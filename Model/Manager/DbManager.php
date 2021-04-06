@@ -2,10 +2,10 @@
 abstract class DbManager {
 
     protected $bdd;
-    private $host = 'mysql';
-    private $dbName = 'mvc_login_demo';
+    private $host = 'localhost';
+    private $dbName = 'exam_poo';
     private $username= 'root';
-    private $password = 'root';
+    private $password = '';
 
     public function __construct(){
         try {

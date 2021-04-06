@@ -8,10 +8,10 @@ class UtilisateurManager extends DbManager {
 
     public function insert(Utilisateur $utilisateur) {
         $username = $utilisateur->getUsername();
-        $password = $utilisateur->getPassword();
+        $password = hash('sha256',$utilisateur->getPassword());
 
         try {
-            $requete = $this->bdd->prepare("INSERT INTO utilisateur (username, password) VALUES (?,?)");
+            $requete = $this->bdd->prepare("INSERT INTO user (username, password) VALUES (?,?)");
 
             $requete->bindParam(1, $username);
             $requete->bindParam(2, $password);
@@ -38,9 +38,10 @@ class UtilisateurManager extends DbManager {
     }
 
     public function testLogin($username, $password) {
-        $requete = $this->bdd->prepare("SELECT * FROM utilisateur WHERE username = ? AND password = ?");
+        $requete = $this->bdd->prepare("SELECT * FROM user WHERE username = ? AND password = ?");
+        $hashedPässword = hash('sha256',$password);
         $requete->bindParam(1, $username);
-        $requete->bindParam(2, $password);
+        $requete->bindParam(2, $hashedPässword);
 
         $requete->execute();
         $res = $requete->fetch();

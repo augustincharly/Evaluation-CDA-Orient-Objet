@@ -78,4 +78,9 @@ class UserController {
             require 'Vue/login.php';
         }
     }
+
+    public function logoutUser(){
+        session_destroy();
+        header('Location: index.php?controller=team&action=list');
+    }
 }

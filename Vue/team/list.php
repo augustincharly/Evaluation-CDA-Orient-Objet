@@ -1,29 +1,19 @@
-<html>
-<head>
-
-</head>
-<body>
 
 <div class="container text-center">
-    <h3 class="my-4">Bienvenue dans l'administration, <?= $_SESSION['username'] ?></h3>
+    <h3 class="my-4">Bienvenue sur le classement des équipes</h3>
     <table class="table table-bordered table-striped text-center">
         <thead class="table-dark">
         <tr>
-            <th>#</th>
+            <th>Classement</th>
             <th>Equipe</th>
             <th>Points obtenus</th>
             <th>But pris</th>
             <th>But inscrits</th>
             <th>Logo</th>
-            <th >actions</th>
         </tr>
         </thead>
 
         <tbody>
-
-        <div>
-            <a href="index.php?controller=team&action=createTeamForm" class="btn btn-info mb-3 ">Créer une équipe</a>
-        </div>
         <?php
         if (isset($teams)) {
             foreach ($teams as $index => $team) { ?>
@@ -35,10 +25,6 @@
                     <td><?= $team->getGoalsTaken()?></td>
                     <td><?= $team->getGoalsScored()?></td>
                     <td><img src="<?= $team->getUrl()?>" alt="logo de l'équipe"></td>
-                    <td>
-                        <a href="index.php?controller=team&action=updateTeamForm&id=<?= $team->getId()?>" class="btn btn-warning mx-2">modifier</a>
-                        <a class="btn btn-danger" href="index.php?controller=team&action=delete&id=<?= $team->getId() ?>">supprimer</a>
-                    </td>
                 </tr>
             <?php }
 
@@ -48,10 +34,10 @@
 
     </table>
     <div>
-        <a href="index.php?controller=user&action=logout">Se déconnecter </a>
+        <a href="index.php?controller=user&action=login">Se connecter </a>
+    </div>
+    <div class="my-2">
+        <a href="index.php?controller=user&action=register">Créer un compte  </a>
     </div>
 
 </div>
-
-</body>
-</html>
